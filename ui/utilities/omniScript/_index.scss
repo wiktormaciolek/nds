@@ -1,0 +1,116 @@
+@use "sass:math";
+
+.nds-omni-typeahead {
+
+  // stylelint-disable-next-line selector-class-pattern
+  &:not(.is-edit-mode)~* {
+    display: none;
+  }
+}
+
+
+.nds-omni-lookup {
+
+  // The following rule disables the cursor.
+  input {
+    color: transparent;
+    text-shadow: 0 0 0 $color-text-default;
+  }
+}
+
+/**
+* This styles overrides the lightning-file-upload styles that can't be customized on the component
+*/
+.nds-card {
+
+  // stylelint-disable-next-line selector-class-pattern
+  .slds-file-selector.slds-file-selector_files {
+    width: 100%;
+  }
+
+  // stylelint-disable-next-line selector-class-pattern
+  .slds-file-selector__dropzone {
+    border: 0;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  // stylelint-disable-next-line selector-class-pattern
+  .omni-file-input {
+
+    // stylelint-disable-next-line selector-class-pattern
+    .slds-form-element__label {
+      display: none;
+    }
+
+    // stylelint-disable-next-line selector-class-pattern
+    .slds-file-selector__body {
+      white-space: nowrap;
+    }
+
+    // stylelint-disable-next-line selector-class-pattern
+    .slds-file-selector__button {
+      white-space: nowrap;
+    }
+  }
+}
+
+@mixin reset-size($size, $columns: 12) {
+  @for $i from 1 through $columns {
+      .nds-#{$size}-size_#{$i}-of-#{$columns} {
+          width: percentage(math.div($i, $columns));
+          flex: 0 0 percentage(math.div($i, $columns));
+          max-width: percentage(math.div($i, $columns));
+      }
+  }
+}
+
+@mixin reset-order($size: false) {
+  @for $i from 1 through 12 {
+      .nds#{if($size, "-" + $size, "")}-order_#{$i} {
+          order: $i;
+      }
+  }
+}
+
+// Support for flexipage regions.
+.nds-flexipage-container {
+  &_small {
+
+    [class*=nds-medium-size],
+    [class*=nds-large-size] {
+      width: 100%; // override width
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+
+    @include reset-order();
+
+    .nds-modal__container {
+      @include reset-size(medium);
+      @include reset-size(large);
+      @include reset-order(medium);
+      @include reset-order(large);
+    }
+
+    .omniscript-sfl-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &_medium {
+    [class*=nds-large-size] {
+      width: 100%;
+    }
+
+    @include reset-order(medium);
+
+    .slds-modal__container {
+      @include reset-size(large);
+      @include reset-order(large);
+    }
+  }
+
+}

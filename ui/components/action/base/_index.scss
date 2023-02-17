@@ -1,0 +1,38 @@
+// Copyright (c) 2015-present, salesforce.com, inc. All rights reserved
+// Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license
+
+/**
+ * @summary This is a vlocity action.
+ *
+ * @name base
+ * @selector .nds-action
+ * @restrict ul
+ * @variant
+ * @required
+ * @support dev-ready
+ */
+
+.nds-action {
+    .nds-action_item {
+        display: inline-block;
+        color: inherit;
+        min-height: 1.7rem;
+        vertical-align: middle;
+    }
+    .nds-action_inline {
+        display: inline-block;
+    }
+    .nds-action_icon {
+        display: table-cell;
+        vertical-align: middle;
+    }
+    .nds-action_text {
+        font-size: inherit;
+        display: table-cell;
+        color: inherit;
+        vertical-align: middle;
+    }
+    .menu-item-label {
+        width: 100%;
+    }
+}
